@@ -26,9 +26,19 @@ if (isset($_REQUEST['json'])) {
 
 //echo HTML_DIRECTORY . DIRECTORY_SEPARATOR. $config['theme'].DIRECTORY_SEPARATOR. $value;
 foreach ($config['template'] as $index => $value) {
-	if (file_exists(HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'theme' . DIRECTORY_SEPARATOR . $sl_theme . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value)) {
-		$config['template'][$index] = HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'theme' . DIRECTORY_SEPARATOR . $sl_theme . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value;
+	if(strcmp($sl_theme,'default')) {
+		if (file_exists(HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'theme' . DIRECTORY_SEPARATOR . $sl_theme . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value)) {
+			$config['template'][$index] = HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'theme' . DIRECTORY_SEPARATOR . $sl_theme . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value;
+			continue;
+		}
 	} else {
+		if (file_exists(HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value)) {
+			$config['template'][$index] = HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value;
+			continue;
+		}
+	}
+
+	if (file_exists(HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value)) {
 		$config['template'][$index] = HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value;
 	}
 }
@@ -36,16 +46,13 @@ foreach ($config['template'] as $index => $value) {
 if (empty($config['template']['layout']))
 	throw new Exception('레이아웃이 설정되지 않았습니다.$template[\'layout\']을 설정해 주세요');
 
-// main템플릿이 따로 입력되지  않았으면
-if (empty($config['template']['main'])) {
+// find_html함수가 돌려주는것으로  main템플릿 설정
+$config['template']['main'] = find_html($sl_theme,$config['template']['main']);
 
-	// find_html함수가 돌려주는것으로  main템플릿 설정
-	$config['template']['main'] = find_html($sl_theme);
+// main템플릿이 없으면
+if (empty($config['template']['main']))
+	throw new Exception('main이  설정되지 않았습니다.$template[\'main\']을 설정해 주세요');
 
-	// main템플릿이 없으면
-	if (empty($config['template']['main']))
-		throw new Exception('main이  설정되지 않았습니다.$template[\'main\']을 설정해 주세요');
-}
 
 if (file_exists(JAVASCRIPT_DIRECTORY . DIRECTORY_SEPARATOR . 'common.php')) {
 	// 현재 경로것 이용
