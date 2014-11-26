@@ -1,4 +1,4 @@
-<section id="sl_board_blog_new" class="sub_main">
+<section id="sl_board_blog_new">
 	<form role="form" action="insert.php" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
   	<div class="form-group">

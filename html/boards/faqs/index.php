@@ -1,4 +1,4 @@
-<section id="sl_board_faq_index" class="sub_main">
+<section id="sl_board_faq_index">
 	<ol class="nav nav-tabs">
 		<?php if(isset($data['category'])): ?>
 			<?php foreach($data['category'] as $index=>$value): ?>

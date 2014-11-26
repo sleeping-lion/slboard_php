@@ -1,5 +1,5 @@
-<section>
-	<form action="new.php" method="post">
+<section id="sl_board_user_agree">
+	<form id="sl_board_user_agree_form" action="new.php" method="post">
 		<article>
 		
 		</article>

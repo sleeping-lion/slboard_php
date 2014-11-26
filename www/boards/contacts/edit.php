@@ -9,7 +9,7 @@ try {
 	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
 
 	$con = null;
-	
+
 	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
 	$con = null;

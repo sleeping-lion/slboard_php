@@ -20,9 +20,8 @@ try {
 	$stmt_count = $con -> prepare('SELECT COUNT(*) FROM users ' . $query_where);
 	$stmt_count -> bindParam(':email', $clean['email'], PDO::PARAM_STR);
 	$stmt_count -> execute();
-	$total_a = $stmt_count -> fetch(PDO::FETCH_NUM);
-	$total = $total_a[0];
-
+	$total = $stmt_count -> fetchColumn();
+	
 	if (!$total)
 		throw new Exception(_('invalid_email_or_password'), 1);
 

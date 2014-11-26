@@ -1,4 +1,4 @@
-<section id="sl_board_question_show" class="sub_main">
+<section id="sl_board_question_show">
   <div class="slboard_content">
     <div class="sl_content_header">
       <h3 itemprop="name"><?php echo $data['content']['title'] ?></h3>

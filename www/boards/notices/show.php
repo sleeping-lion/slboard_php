@@ -8,16 +8,16 @@ try {
 
 	// 커넥터(PDO) 가져오기
 	$con = get_PDO($config_db);
-	
+
 	// 전체 카운터 뽑기
 	$stmt_count = $con -> prepare('SELECT COUNT(*) FROM notices WHERE id=:id');
 	$stmt_count -> bindParam(':id', $clean['id'], PDO::PARAM_INT);
 	$stmt_count -> execute();
-	
-	if(!$stmt_count -> fetchColumn())
-		throw new Exception("Error Processing Request", 1);	
-	
-	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';	
+
+	if (!$stmt_count -> fetchColumn())
+		throw new Exception("Error Processing Request", 1);
+
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
 
 	$stmt = $con -> prepare('SELECT n.*,nc.content,u.name FROM notices As n Inner Join notice_contents As nc ON n.id=nc.id Inner Join users As u ON n.user_id=u.id WHERE n.id=:id');
 	$stmt -> bindParam(':id', $clean['id'], PDO::PARAM_INT);
@@ -26,8 +26,8 @@ try {
 
 	/******** 트랙잭션 시작 **********/
 	$con -> beginTransaction();
-	
-	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'insert_impressions.php';	
+
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'insert_impressions.php';
 
 	/******** 커밋 **********/
 	$con -> commit();

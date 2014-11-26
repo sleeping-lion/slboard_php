@@ -1,4 +1,4 @@
-<section id="sl_board_question_new" class="sub_main">
+<section id="sl_board_question_new">
 	<form role="form" action="insert.php" method="post">
 	<?php if(isset($_SESSION['USER_ID'])): ?>
   <div class="form-group">

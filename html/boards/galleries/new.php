@@ -19,8 +19,7 @@
   	</div>
   	<div class="form-group">
     	<label for="sl_photo"><?php echo _('label_photo') ?></label>
-    	<input type="file" name="photo" id="sl_photo" required="required">
-   	 <p class="help-block">Example block-level help text here.</p>
+    	<input type="file" name="photo" id="sl_photo" required="required" />
   	</div>
   	<input type="submit" class="btn btn-primary" value="<?php echo _('submit') ?>" />
 	</form>

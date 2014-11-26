@@ -1,4 +1,4 @@
-<section id="sl_board_contract_show" class="sub_main">
+<section id="sl_board_contract_show">
 	<table id="sl_main_show" border="0" cellpadding="0" cellspacing="0">
 		<colgroup>
 			<col />

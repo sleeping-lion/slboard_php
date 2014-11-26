@@ -1,4 +1,4 @@
-<section id="sl_board_history_index" class="sub_main">
+<section id="sl_board_history_index">
 	<article>
 		<dl>
 			<dt></dt>

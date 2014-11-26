@@ -1,4 +1,4 @@
-<section id="sl_board_notice_edit" class="sub_main">
+<section id="sl_board_notice_edit">
 	<form action="update.php" role="form" method="post">
   	<div class="form-group">
     	<label for="exampleInputEmail1">Email address</label>

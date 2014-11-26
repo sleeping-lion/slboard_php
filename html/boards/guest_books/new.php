@@ -1,5 +1,5 @@
-<section id="sl_board_guest_book_new" class="sub_main">
-<form role="form" action="insert.php" method="post">
+<section id="sl_board_guest_book_new">
+	<form role="form" action="insert.php" method="post">
 	<?php if(isset($_SESSION['USER_ID'])): ?>
   <div class="form-group">
     <label for="sl_name"><?php echo _('label_name') ?></label>
@@ -28,6 +28,6 @@
     <textarea id="sl_content" name="content" class="form-control"></textarea>
   </div>
   <input type="submit" class="btn btn-primary" value="<?php echo _('submit') ?>" />
-</form>
+	</form>
 </section>
 

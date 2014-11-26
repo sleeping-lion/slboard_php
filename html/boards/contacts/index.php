@@ -1,4 +1,4 @@
-<section id="sl_board_contact_index" class="sub_main">
+<section id="sl_board_contact_index">
 	<article class="table-responsive">
 		<table id="sl_main_list" border="0" cellpadding="0" cellspacing="0">
 			<colgroup>
