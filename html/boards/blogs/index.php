@@ -19,7 +19,7 @@
   <article class="media" itemscope itemprop="blogPost" itemtype="http://schema.org/Blog">
     <a href="<?php echo show_link($value['id']) ?>" class="pull-left" ?>
     <?php  if(!empty($value['photo'])): ?>
-     <img width="100" height="100" class="media-object" itemprop="thumbnailUrl" src="<?php echo htmlspecialchars(phpThumbURL('src=/../uploads/'.$config['controller'].'/'.$value['id'].'/'.$value['photo'].'&w=100&h=100', '/phpThumb/phpThumb.php')) ?>" alt="<?php echo $data['content']['title'] ?>" />
+     <img width="100" height="100" class="media-object" itemprop="thumbnailUrl" src="<?php echo htmlspecialchars(phpThumbURL('src=/../uploads/blogs/'.$value['id'].'/'.$value['photo'].'&w=100&h=100', '/phpThumb/phpThumb.php')) ?>" alt="<?php echo $data['content']['title'] ?>" />
     <?php endif ?>
    </a>
     <div class="media-body">

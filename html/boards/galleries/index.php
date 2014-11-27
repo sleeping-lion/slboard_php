@@ -16,7 +16,7 @@
 	<div id="sl_gallery_left">
 		<span class="none" itemprop="genre"><?php echo $data['content']['category_id'] ?></span>
 		<a href="<?php echo htmlspecialchars(phpThumbURL('src=/../uploads/'.$config['controller'].'/'.$data['content']['id'].'/'.$data['content']['photo'], '/phpThumb/phpThumb.php')) ?>" class="simple_image">
-		<img width="400" height="300" class="img-responsive" src="<?php echo htmlspecialchars(phpThumbURL('src=/../uploads/'.$config['controller'].'/'.$data['content']['id'].'/'.$data['content']['photo'].'&w=400&h=300', '/phpThumb/phpThumb.php')) ?>" alt="<?php echo $data['content']['title'] ?>" />
+		<img width="400" height="300" class="img-responsive" src="<?php echo htmlspecialchars(phpThumbURL('src=/../uploads/galleries/'.$data['content']['id'].'/'.$data['content']['photo'].'&w=400&h=300', '/phpThumb/phpThumb.php')) ?>" alt="<?php echo $data['content']['title'] ?>" />
 		<span id="gallery<?php echo $data['content']['id'] ?>_img<?php echo $data['content']['id'] ?>_span" class="image_caption" itemprop="name"><?php echo $data['content']['title'] ?></span>
 		</a>
 	</div>
@@ -42,7 +42,7 @@
 				<?php foreach($data['list'] as $gallery_a): ?>
 				<ul class="item">
 				<?php foreach($gallery_a as $value): ?>
-					<li><a href="<?php echo show_link($value['id']) ?>"><img width="100" height="100" src="<?php echo htmlspecialchars(phpThumbURL('src=/../uploads/gallery/'.$value['id'].'/'.$value['photo'].'&w=100&h=100', '/phpThumb/phpThumb.php')) ?>" alt="<?php echo $value['title'] ?>" /></a></li>
+					<li><a href="<?php echo show_link($value['id']) ?>"><img width="100" height="100" src="<?php echo htmlspecialchars(phpThumbURL('src=/../uploads/galleries/'.$value['id'].'/'.$value['photo'].'&w=100&h=100', '/phpThumb/phpThumb.php')) ?>" alt="<?php echo $value['title'] ?>" /></a></li>
 				<?php endforeach ?>
 				</ul>
 				<?php endforeach ?>

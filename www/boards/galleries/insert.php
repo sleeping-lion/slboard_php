@@ -38,7 +38,7 @@ try {
 	
 	$clean['id']=$con->lastInsertId();
 	
-	move_file($clean['photo'],$config['controller'],$clean['id']);
+	move_file($clean['photo'],'galleries',$clean['id']);
 	
 	/******** 커밋 **********/
 	$con -> commit();
