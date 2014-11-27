@@ -41,7 +41,8 @@ $config['template']['footer']='footer.php';
 $config['template']['aside']='aside.php';
 
 
-$config['env']['rewirte']=in_array('mod_rewrite', apache_get_modules());
+if(function_exists('apache_get_modules'))
+	$config['env']['rewirte']=in_array('mod_rewrite', apache_get_modules());
 
 /* i18n locale */
 $locale = 'ko_KR';
