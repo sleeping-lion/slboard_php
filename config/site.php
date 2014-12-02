@@ -21,7 +21,7 @@ $config['site']['admin'] = 'SLBoard 관리자';
 $config['site']['application-name'] = 'SLBoard';
 
 //  <meta name="keywords" content="">
-$config['site']['keywords'] = ',SLBoard,SL,Board,PHP,웹표준';
+$config['site']['keywords'] = 'SLBoard,SL-Board,SL,Board,PHP,웹표준';
 
 //  <meta name="description" content="">
 $config['site']['description'] = 'SLBoard홈페이지 입니다.';

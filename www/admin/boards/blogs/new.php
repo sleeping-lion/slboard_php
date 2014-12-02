@@ -1,25 +1,32 @@
 <?php
 
 try {
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'setting.php';
+	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'admin_only.php';	
 
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	$clean = filter_input_array(INPUT_GET, array('blog_category_id' => FILTER_VALIDATE_INT));
 
-	require_once $getContentClassPath;
-	$getCategory=new GetBlogCategory($con);
-	$data['category']=$getCategory->getList(new GetBlogCategoryRequestType());
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
 
-	$con=null;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
 
-	$template['layout']='layout/admin/editorNew.html';
+	// 카테고리 가져오기
+	$stmt_category_count = $con -> prepare('SELECT COUNT(*) FROM blog_categories');
+	$stmt_category_count -> execute();
+	$data['total_category'] = $stmt_category_count -> fetchColumn();
 
-	$formatData=new FormatSuccessData($config);
-	$formatData->echoFormatData($template,$data);
+	if ($data['total_category']) {
+		$stmt_category = $con -> prepare('SELECT * FROM blog_categories ORDER BY ID DESC');
+		$stmt_category -> execute();
+		$data['category'] = $stmt_category -> fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	$sl_js = array('/ckeditor/ckeditor.js', 'boards/new.js');
+
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	$con=null;
-
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

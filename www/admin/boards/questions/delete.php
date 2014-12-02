@@ -1,39 +1,34 @@
 <?php
 
 try {
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'setting.php';
+	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
 
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	$clean = filter_input_array(INPUT_POST, array('id' => FILTER_VALIDATE_INT));
 
-	// 본문 가져오기 
-	require_once $getContentClassPath;
-	$getQuestion=new GetQuestion($con);
-	$content=$getQuestion->checkAnonPriv(new GetQuestionRequestType($_REQUEST));
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
 
 	/******** 트랙잭션 시작 **********/
-	$con->beginTransaction();
+	$con -> beginTransaction();
 
-	// 삭제
-	require_once $setContentClassPath;
-	$setQuestion=new SetQuestion($con);
-	$data['deleted']=$setQuestion->delete(new SetQuestionRequestType(array('id'=>$content['id'])));
+	$stmt = $con -> prepare('DELETE * FROM questions WHERE id=:id');
+	$stmt -> bindParam(':id', $clean['id'], PDO::PARAM_INT);
+	$stmt -> execute();
 
 	/******** 커밋 **********/
-	$con->commit();
-	$con=null;
+	$con -> commit();
+	$con = null;
 
-	$template='index.php';
-	require_once $foramtSuccessData;
+	$sl_redirect = 'index.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	if($con) {
-		if($con->inTransaction())
-		/******** 롤백 **********/
-		$con->rollback();
-		$con=null;
+	if ($con) {
+		if ($con -> inTransaction()) {
+			/******** 롤백 **********/
+			$con -> rollback();
+		}
+		$con = null;
 	}
-
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

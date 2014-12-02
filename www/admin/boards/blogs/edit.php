@@ -1,27 +1,21 @@
 <?php
 
 try {
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'setting.php';
+	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
 
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'admin_only.php';
 
-	$getCategory=new GetBlogCategory($con);
-	$data['category']=$getCategory->getList(new GetBlogCategoryRequestType());
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
 
-	$getContent=new GetBlog($con);
-	$data['content']=$getContent->getContent(new GetBlogRequestType(array('id'=>$_GET['id'])));
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
 
-	$con=null;
-
-	$template['layout']='layout/admin/editorEdit.html';
-
-	$formatData=new FormatSuccessData($config);
-	$formatData->echoFormatData($template,$data);
+	$con = null;
+	
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	$con=null;
+	$con = null;
 
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

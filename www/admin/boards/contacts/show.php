@@ -1,22 +1,36 @@
 <?php
 
 try {
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'setting.php';
+	require __DIR__.DIRECTORY_SEPARATOR.'setting.php';
 
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
+	
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
+	
 
-	require_once $getContentClassPath;
-	$getContent=new GetContact($con);
-	$data['content']=$getContent->getContent(new GetContactRequestType(array('id'=>$_GET['id'])));
 
+
+	/******** 트랙잭션 시작 **********/
+	$con->beginTransaction();
+
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_insert.php';
+
+
+	/******** 커밋 **********/
+	$con->commit();
 	$con=null;
-
-	require_once $foramtSuccessData;
+	
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	$con=null;
+	if($con) {
+		if($con->inTransaction())
+		/******** 롤백 **********/			
+		$con->rollback();
+		$con=null;
+	}
 
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
 
 ?>

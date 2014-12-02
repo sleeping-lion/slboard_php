@@ -510,7 +510,7 @@ function pagination($allCount, $perPage = 10, $prevNext = true, $linkPage = 'ind
 	if ($allCount <= $perPage)
 		return '';
 
-	require_once SLBOARD_CORE_DIRECTORY . DIRECTORY_SEPARATOR . 'SLPager' . DIRECTORY_SEPARATOR . 'SLPager.php';
+	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'SLPager' . DIRECTORY_SEPARATOR . 'SLPager.php';
 
 	$params = array('mode' => 'Jumping', 'totalItems' => $allCount, 'delta' => 10, 'perPage' => $perPage, 'prevImg' => '◀', 'nextImg' => '▶', 'firstPageText' => '맨처음', 'lastPageText' => '마지막', 'curPageLinkClassName' => 'active');
 	$pager = SLPager::factory($params);

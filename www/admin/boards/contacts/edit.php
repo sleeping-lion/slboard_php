@@ -1,23 +1,19 @@
 <?php
 
 try {
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'setting.php';
+	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
 
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
 
-	require_once $getContentClassPath;
-	$getContent=new GetContact($con);
-	$data['content']=$getContent->getContent(new GetContactRequestType(array('id'=>$_GET['id'])));
-	$data['content']['phone']=explode('-',$data['content']['phone']);
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
 
-	$con=null;
+	$con = null;
 
-	require_once $foramtSuccessData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	$con=null;
+	$con = null;
 
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

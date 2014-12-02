@@ -1,26 +1,21 @@
 <?php
 
 try {
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'setting.php';
+	require_once __DIR__. DIRECTORY_SEPARATOR . 'setting.php';
+	
+	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'admin_only.php';	
+	
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
+	
+	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';	
 
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	$con = null;
 
-	require_once $getContentCategoryClassPath;
-	$getContentCategory=new GetGalleryCategory($con);
-	$data['category']=$getContentCategory->getList(new GetGalleryCategoryRequestType());
-
-	require_once $getContentClassPath;
-	$getContent=new GetGallery($con);
-	$data['content']=$getContent->getContent(new GetGalleryRequestType($_GET));
-
-	$con=null;
-
-	require_once $foramtSuccessData;
+	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	$con=null;
+	$con = null;
 
-	require_once $foramtErrorData;
+	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

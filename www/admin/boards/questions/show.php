@@ -1,32 +1,47 @@
 <?php
 
 try {
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'setting.php';
+	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
 	
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	// 입력 필터
+	$clean = filter_input_array(INPUT_GET, array('id' => FILTER_VALIDATE_INT));	
 
-	// 본문 가져오기 
-	require_once $getContentClassPath;
-	$getContent=new GetQuestion($con);
-	$data['content']=$getContent->getContent(new GetQuestionRequestType($_REQUEST));
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
 	
-	require_once $contentQuestionAnswerClassPath.DIRECTORY_SEPARATOR.'GetQuestionAnswer.php';
-	$getAnswer=new GetQuestionAnswer($con);
-	$data['answerList']=$getAnswer->getList(new GetQuestionAnswerRequestType(array('parent_id'=>$data['content']['id'])));
+	// 전체 카운터 뽑기
+	$stmt_count = $con -> prepare('SELECT COUNT(*) FROM questions WHERE id=:id');
+	$stmt_count -> bindParam(':id', $clean['id'], PDO::PARAM_INT);
+	$stmt_count -> execute();
+	
+	if(!$stmt_count -> fetchColumn())
+		throw new Exception("Error Processing Request", 1);
+	
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
+	
+	$stmt = $con -> prepare('SELECT q.*,qc.content,IF(q.user_id,u.name,q.name) as name FROM questions As q Inner Join question_contents As qc ON q.id=qc.id Left Join users As u On q.user_id=u.id WHERE q.id=:id');
+	$stmt -> bindParam(':id', $clean['id'], PDO::PARAM_INT);
+	$stmt -> execute();
+	$data['content'] = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-	$con=null;
+	/******** 트랙잭션 시작 **********/
+	$con -> beginTransaction();
 	
-	require_once $foramtSuccessData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'insert_impressions.php';	
+
+	/******** 커밋 **********/
+	$con -> commit();
+	$con = null;
+
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	if($con) {
-		if($con->inTransaction())
-		/******** 롤백 **********/			
-		$con->rollback();
-		$con=null;
+	if ($con) {
+		if ($con -> inTransaction())
+			/******** 롤백 **********/
+			$con -> rollback();
+		$con = null;
 	}
 
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

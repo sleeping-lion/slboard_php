@@ -1,33 +1,31 @@
 <?php
 
 try {
-	require_once 'setting.php';
+	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
 
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	// 입력 필터
+	$clean = filter_input_array(INPUT_GET, array('id' => FILTER_VALIDATE_INT));
+
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
 
 	/******** 트랙잭션 시작 **********/
-	$con->beginTransaction();
-
-	require_once $setContentClassPath;
-	$setContent=new SetNotice($con);
-	$data['updated']=$setContent->update(new SetNoticeRequestType($_POST));
+	$con -> beginTransaction();
 
 	/******** 커밋 **********/
-	$con->commit();
-	$con=null;
+	$con -> commit();
+	$con = null;
 
-	$template='index.php';
-	require_once $foramtSuccessData;
+	$redirect = 'index.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	if($con) {
-		if($con->inTransaction())
-		/******** 롤백 **********/	
-		$con->rollback();
-		$con=null;
+	if ($con) {
+		if ($con -> inTransaction()) {
+			/******** 롤백 **********/
+			$con -> rollback();
+		}
+		$con = null;
 	}
-
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

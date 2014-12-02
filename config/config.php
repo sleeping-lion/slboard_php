@@ -15,7 +15,6 @@ if (MODE == 'production') {
 	error_reporting(E_ALL & ~(E_NOTICE | E_STRICT));
 }
 
-
 /* database setting Load */
 require 'config_db.php';
 
@@ -28,7 +27,7 @@ require 'path.php';
 
 
 /* include default function */
-require SLBOARD_CORE_DIRECTORY . DIRECTORY_SEPARATOR.'function'.DIRECTORY_SEPARATOR. 'default.php';
+require INCLUDE_DIRECTORY.DIRECTORY_SEPARATOR. 'default.php';
 
 
 /* site config */
@@ -52,10 +51,9 @@ if(!function_exists('_'))
 
 putenv("LC_ALL=" . $locale);
 setlocale(LC_ALL, $locale);
-$domain = 'messages';
-bindtextdomain($domain,ROOT_DIRECTORY. DIRECTORY_SEPARATOR . 'locale');
-textdomain($domain);
-bind_textdomain_codeset($domain, 'UTF-8');
+bindtextdomain('messages',ROOT_DIRECTORY. DIRECTORY_SEPARATOR . 'locale');
+textdomain('messages');
+bind_textdomain_codeset('messages', 'UTF-8');
 
 
 if (isset($_REQUEST['json'])) {

@@ -1,39 +1,32 @@
 <?php
 
 try {
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'setting.php';
+	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'admin_only.php';	
 
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	$clean = filter_input_array(INPUT_POST, array('id' => FILTER_VALIDATE_INT));
+
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
 
 	/******** 트랙잭션 시작 **********/
-	$con->beginTransaction();
-
-	$setCotnent=new SetBlog($con);
-	$setBlogRequestType=new SetBlogRequestType($_POST);
-	$setCotnent->update($setBlogRequestType);
-
-	if($_FILES['photo']['size']) {
-		$setBlogPhoto=new SetBlogPhoto($con);
-		$setBlogPhoto->delete(new SetBlogPhotoRequestType($setBlogRequestType->id));
-		$setBlogPhoto->insert(new SetBlogPHotoRequestType($setBlogRequestType->id,$_FILES['photo']));
-	}
+	$con -> beginTransaction();
 
 	/******** 커밋 **********/
-	$con->commit();
-	$con=null;
+	$con -> commit();
+	$con = null;
 
-	$formatData=new FormatSuccessData($config);
-	$formatData->echoFormatData('index.php',$data);
+	$redirect = 'index.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	if($con) {
-		if($con->inTransaction())
-		/******** 롤백 **********/			
-		$con->rollback();
-		$con=null;
+	if ($con) {
+		if ($con -> inTransaction()) {
+			/******** 롤백 **********/
+			$con -> rollback();
+		}
+		$con = null;
 	}
-
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

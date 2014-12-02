@@ -1,13 +1,21 @@
 <?php
 
 try {
-	require_once 'setting.php';
+	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
 
-	$template['script']='/admin/board/newScript.html';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'admin_only.php';
 
-	require_once $foramtSuccessData;
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
+
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
+
+	$con = null;
+
+	$sl_js = array('/ckeditor/ckeditor.js', 'boards/new.js');
+
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

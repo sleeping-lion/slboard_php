@@ -1,25 +1,20 @@
 <?php
 
 try {
-	require_once 'setting.php';
+	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
 
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	// 입력 필터
+	$clean = filter_input_array(INPUT_GET, array('id' => FILTER_VALIDATE_INT));
 
-	//본문 가져오기 
-	require_once $getContentClassPath;
-	$getContent=new GetNotice($con);
-	$data['content']=$getContent->getContent(new GetNoticeRequestType(array('id'=>$_GET['id'])));
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
 
-	$con=null;
+	$con = null;
 
-	$template['script']='/admin/board/editScript.html';
-
-	require_once $foramtSuccessData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	$con=null;
+	$con = null;
 
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

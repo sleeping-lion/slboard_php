@@ -1,22 +1,34 @@
 <?php
 
 try {
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'setting.php';
+	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
 
-	require_once $getDbConnectionClassPath;
-	$con=GetDbConnection::getConnection($configDb);
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'admin_only.php';
 
-	require_once $getContentClassPath;
-	$getContent=new GetContact($con);
-	$data['list']=$getContent->getList(new GetContactRequestType($_GET));
+	$clean = filter_input_array(INPUT_GET, array('id' => FILTER_VALIDATE_INT));
 
-	$con=null;
+	// 커넥터(PDO) 가져오기
+	$con = get_PDO($config_db);
 
-	require_once $foramtSuccessData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
+
+	$stmt_count = $con -> prepare('SELECT COUNT(*) FROM notices ' . $query_where);
+	$stmt_count -> execute();
+	$data['total'] = $stmt_count -> fetchColumn();
+
+	if ($data['total']) {
+		$query_order = 'ORDER BY ID DESC';
+
+		$stmt = $con -> prepare('SELECT * FROM notices ' . $query_where . ' ' . $query_order);
+		$stmt -> execute();
+	}
+
+	$con = null;
+
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	$con=null;
+	$con = null;
 
-	require_once $foramtErrorData;
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>
