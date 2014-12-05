@@ -21,7 +21,7 @@ try {
 	$stmt_count -> bindParam(':email', $clean['email'], PDO::PARAM_STR);
 	$stmt_count -> execute();
 	$total = $stmt_count -> fetchColumn();
-	
+
 	if (!$total)
 		throw new Exception(_('invalid_email_or_password'), 1);
 
@@ -31,7 +31,7 @@ try {
 	$stmt -> execute();
 	$user = $stmt -> fetch(PDO::FETCH_NUM);
 
-	$encrypted_password = crypt($clean['password'], substr($user[2], 0, 29));
+	$encrypted_password = crypt($clean['password'].$config['user_pepper'], substr($user[2], 0, 29));
 
 	if (strcmp($user[2], $encrypted_password))
 		throw new Exception(_('invalid_email_or_password'), 1);

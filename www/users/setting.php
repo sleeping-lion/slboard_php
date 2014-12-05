@@ -4,5 +4,6 @@ require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'set
 require_once INCLUDE_DIRECTORY.DIRECTORY_SEPARATOR.'get_action.php';
 
 $config['controller']='user';
+$config['user_pepper']='';
 
 ?>

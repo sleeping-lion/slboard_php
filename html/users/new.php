@@ -1,5 +1,5 @@
 <section id="sl_board_user_new">
-	<form action="insert.php" id="sl_board_user_new_form" method="post">
+	<form action="insert.php" id="sl_board_user_new_form" enctype="multipart/form-data" method="post">
 	<input type="hidden" id="message_no_email" value="<?php echo _('not_insert_email') ?>" />
 	<input type="hidden" id="message_no_password" value="<?php echo _('not_insert_password') ?>" />
 	<input type="hidden" id="message_invalid_email" value="<?php echo _('invalid_email') ?>" />
@@ -18,12 +18,12 @@
   <div class="form-group row">
   	<div class="col-md-12 col-xs-12">  	
     <label class="control-label" for="sl_password"><?php echo _('label_password') ?></label>
-    <input type="text" class="form-control" id="sl_password" name="name" maxlength="255" required="required" />
+    <input type="password" class="form-control" id="sl_password" name="password" maxlength="255" required="required" />
    </div>
   </div>
   <div class="form-group">
     <label class="control-label" for="sl_password_confirm"><?php echo _('label_password_confirm') ?></label>
-    <input type="text" class="form-control" id="sl_password_confirm" name="name" maxlength="255" required="required" />
+    <input type="password" class="form-control" id="sl_password_confirm" name="password_confirm" maxlength="255" required="required" />
   </div>
   <div class="form-group">
     <label class="control-label" for="sl_name"><?php echo _('label_name') ?></label>

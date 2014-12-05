@@ -3,7 +3,7 @@
 try {
 	require_once __DIR__.DIRECTORY_SEPARATOR.'setting.php';
 	
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'admin_only.php';	
+	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'admin_only.php';
 
 	$clean = filter_input_array(INPUT_POST, 
 	array('gallery_category_id'=>FILTER_VALIDATE_INT,
@@ -12,13 +12,13 @@ try {
 	);
 	
 	if(empty($clean['gallery_category_id']))
-		throw new Exception(_('empty or invalid category_id'), 1);
+		throw new Exception(_('invalid category_id'), 1);
 	
 	if(empty($clean['title']))
-		throw new Exception(_('empty or invalid title'), 1);
+		throw new Exception(_('invalid title'), 1);
 	
 	if(empty($clean['content']))
-		throw new Exception(_('empty or invalid content'), 1);
+		throw new Exception(_('invalid content'), 1);
 	
 	// 커넥터(PDO) 가져오기
 	$con = get_PDO($config_db);
