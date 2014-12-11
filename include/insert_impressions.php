@@ -27,7 +27,7 @@ $stmt_insert_impression -> bindParam(':referrer', $_SERVER['HTTP_REFERER'], PDO:
 $stmt_insert_impression -> execute();
 
 if (!$impression_total) {
-	$stmt_update_count = $con -> prepare('UPDATE ' . $clean['controller_name'] . ' SET count=count+1 WHERE id=:id');
-	$stmt_update_count -> bindParam(':id', $data['content']['id'], PDO::PARAM_INT);
-	$stmt_update_count -> execute();
+//	$stmt_update_count = $con -> prepare('UPDATE ' . $clean['controller_name'] . ' SET count=count+1 WHERE id=:id');
+//	$stmt_update_count -> bindParam(':id', $data['content']['id'], PDO::PARAM_INT);
+//	$stmt_update_count -> execute();
 }

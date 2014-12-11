@@ -1,4 +1,4 @@
-<article id="sl_main_question" class="sl_main_list">
+<article id="slboard_main_question" class="sl_main_list">
 	<h3><?php echo _('question') ?></h3>
 	<?php if($data['question_total']): ?>
 	<ul>

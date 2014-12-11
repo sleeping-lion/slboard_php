@@ -1,4 +1,4 @@
-<section id="sl_board_question_index">
+<section id="slboard_question_index">
 	<article class="table-responsive">
 		<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 			<colgroup>

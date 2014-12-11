@@ -1,4 +1,4 @@
-<article id="sl_main_notice" class="sl_main_list">
+<article id="slboard_main_notice" class="sl_main_list">
 	<h3><?php echo _('notice') ?></h3>
 	<?php if($data['notice_total']): ?>
 	<ul>

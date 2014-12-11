@@ -26,7 +26,7 @@ $(document).ready(function() {
 		//var userPassword=hex_sha1(userPassword);
 		$.post($(this).attr('action'),{'email':userEmail,'token':token,'password':userPassword,'crypt':true,'json':true},function(data){
 			if(data.result=='success') {
-				alert('로그인 성공');
+				location.href='/';
 			} else {
 				display_message(data.message);
 			}

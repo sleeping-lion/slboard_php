@@ -1,14 +1,15 @@
 <header>	
-	<nav class="container">
-  <h1><a href="/">잠자는사자의 집</a></h1>
   <ul id="top_menu">
-			<?php if(isset($_SESSION['USER_ID'])): ?>			
+			<?php if(isset($_SESSION['USER_ID'])): ?>	
+			<li><a href="/users/edit.php"><?php echo _('user_edit') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>							
 			<li><a href="/users/login/logout.php"><?php echo _('logout') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>
 			<?php else: ?>
 			<li><a href="/users/agree.php"><?php echo _('user') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>							
 			<li><a href="/users/login/index.php"><?php echo _('login') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>
 			<?php endif ?>
-  </ul>
+  </ul>	
+	<nav class="container">
+  <h1><a href="/">잠자는사자의 집</a></h1>
 		<ul class="nav nav-pills">
 			<li <?php if(!strcmp($config['controller'],'intro')): ?><?php echo 'class="active"' ?><?php endif ?>><a href="/intro"><?php echo _('intro') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>
 			<li <?php if(!strcmp($config['controller'],'contact')): ?><?php echo 'class="active"' ?><?php endif ?>><a href="/boards/contacts/new.php"><?php echo _('contact') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>

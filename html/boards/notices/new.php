@@ -1,4 +1,4 @@
-<section id="sl_board_notice_new">
+<section id="slboard_notice_new">
 	<form role="form" action="insert.php" method="post">
   	<div class="form-group">
   		<label for="sl_title"><?php echo _('label_title') ?></label>

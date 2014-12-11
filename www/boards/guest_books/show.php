@@ -2,6 +2,9 @@
 
 try {
 	require __DIR__. DIRECTORY_SEPARATOR . 'setting.php';
+	
+	define('GUEST_BOOK_COMMENT_DIRECTORY',BOARD_DIRECTORY . DIRECTORY_SEPARATOR . 'guest_book_comments');
+	define('GUEST_BOOK_COMMENT_HTML_DIRECTORY',BOARD_HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'guest_book_comments');	
 
 	// 입력 필터 
 	$clean = filter_input_array(INPUT_GET, array('id' => FILTER_VALIDATE_INT));

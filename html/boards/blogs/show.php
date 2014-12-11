@@ -8,6 +8,8 @@
       <div class="sl_content_text" itemprop="text"><?php echo nl2br($data['content']['content']) ?></div>
     </div>
   </div>
+  <?php require BLOG_COMMENT_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'_index.php' ?>
+  <?php require BLOG_COMMENT_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'_new.php' ?>    
 	<div id="sl_content_bottom_buttons">
 		<a href="<?php echo index_link() ?>" class="btn btn-default"><?php echo _('index_link') ?></a>
 	</div>
