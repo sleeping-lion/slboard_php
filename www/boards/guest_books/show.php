@@ -26,6 +26,9 @@ try {
 	$stmt -> bindParam(':id', $clean['id'], PDO::PARAM_INT);
 	$stmt -> execute();
 	$data['content'] = $stmt -> fetch(PDO::FETCH_ASSOC);
+	
+	// 댓글 불러오기 
+	require GUEST_BOOK_COMMENT_DIRECTORY . DIRECTORY_SEPARATOR . '_index.php';	
 
 	/******** 트랙잭션 시작 **********/
 	$con -> beginTransaction();

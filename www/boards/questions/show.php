@@ -27,6 +27,7 @@ try {
 	$stmt -> execute();
 	$data['content'] = $stmt -> fetch(PDO::FETCH_ASSOC);
 
+	// 댓글 불러오기 
 	require QUESTION_COMMENT_DIRECTORY . DIRECTORY_SEPARATOR . '_index.php';
 
 	/******** 트랙잭션 시작 **********/

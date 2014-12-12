@@ -35,7 +35,7 @@ try {
 	$con -> commit();
 	$data['inserted_id'] = $clean['id'];
 	
-	$_SESSION['MESSAGE']='성공적으로 글 써졌음';
+	$_SESSION['MESSAGE']=_('successfully article inserted');
 
 	$sl_redirect = 'index.php';
 	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';

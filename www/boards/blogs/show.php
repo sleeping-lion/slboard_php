@@ -24,7 +24,10 @@ try {
 	$stmt = $con -> prepare('SELECT b.*,bc.content,u.name FROM blogs As b Inner Join blog_contents As bc On b.id=bc.id Inner Join users AS u On b.user_id=u.id WHERE b.id=:id');
 	$stmt -> bindParam(':id', $clean['id'], PDO::PARAM_INT);
 	$stmt -> execute();
-	$data['content'] = $stmt -> fetch(PDO::FETCH_ASSOC);	
+	$data['content'] = $stmt -> fetch(PDO::FETCH_ASSOC);
+	
+	// 댓글 불러오기
+	require BLOG_COMMENT_DIRECTORY . DIRECTORY_SEPARATOR . '_index.php';		
 
 	/******** 트랙잭션 시작 **********/
 	$con -> beginTransaction();	

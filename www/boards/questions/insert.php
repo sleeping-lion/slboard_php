@@ -32,6 +32,7 @@ try {
 	/******** 커밋 **********/
 	$con -> commit();
 	$data['inserted_id'] = $clean['id'];
+	$_SESSION['MESSAGE'] = _('successfully artcile inserted');	
 
 	$sl_redirect = 'index.php';
 	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
