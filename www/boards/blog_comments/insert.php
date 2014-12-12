@@ -17,8 +17,9 @@ try {
 	/******** 트랙잭션 시작 **********/
 	$con -> beginTransaction();
 
-	$stmt = $con -> prepare('INSERT INTO guest_book_comments(blog_id,name,encrypted_password,salt,content,created_at) VALUES(:blog_id,:name,:encrypted_password,:salt,:content,now())');
+	$stmt = $con -> prepare('INSERT INTO blog_comments(blog_id,user_id,name,encrypted_password,salt,content,created_at) VALUES(:blog_id,:user_id,:name,:encrypted_password,:salt,:content,now())');
 	$stmt -> bindParam(':blog_id', $clean['blog_id'], PDO::PARAM_INT);
+	$stmt -> bindParam(':user_id', $_SESSION['USER_ID'], PDO::PARAM_INT);
 	$stmt -> bindParam(':name', $clean['name'], PDO::PARAM_STR, 60);
 	$stmt -> bindParam(':encrypted_password', $clean['encrypted_password'], PDO::PARAM_STR, 255);
 	$stmt -> bindParam(':salt', $clean['name'], PDO::PARAM_STR, 60);
@@ -29,7 +30,7 @@ try {
 
 	/******** 커밋 **********/
 	$con -> commit();
-	
+
 	$_SESSION['MESSAGE'] = _('successfully comment inserted');
 
 	$sl_redirect = '../blogs/show.php?id=' . $clean['blog_id'];

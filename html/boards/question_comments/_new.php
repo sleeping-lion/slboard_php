@@ -1,4 +1,4 @@
-<section id="slboard_question_commnet_new">
+<section id="slboard_question_commnet_new" class="slboard_comment_new">
 	<form role="form" action="../question_comments/insert.php" method="post">
 		<input type="hidden" name="question_id" value="<?php echo $data['content']['id'] ?>" />
 	<?php if(isset($_SESSION['USER_ID'])): ?>

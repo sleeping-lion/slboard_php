@@ -114,6 +114,9 @@ footer address {margin-top:10px }
 #sl_gallery_slide .scrollable .items .item li a {float:left;display:block}
 
 
+.slboard_comment_index .media {border:1px dotted #ccc}
+
+
 #sl_board_faq_index {float:left;width:100%;margin:0}
 #sl_board_faq_index ol.nav-tabs {margin:0 0 10px}
 #sl_board_faq_index article {float:left;width:100%;margin:20px 0}

@@ -1,5 +1,6 @@
-<section id="sl_board_guest_book_commnet_new">
-	<form role="form" action="../guest_book_comments/insert.php" method="post">
+<section id="sl_board_guest_book_commnet_new" class="slboard_comment_new">
+	<form role="form" action="../blog_comments/insert.php" method="post">
+	<input type="hidden" name="blog_id" value="<?php echo $data['content']['id'] ?>" />				
 	<?php if(isset($_SESSION['USER_ID'])): ?>
   <div class="form-group">
     <label for="sl_name"><?php echo _('label_name') ?></label>

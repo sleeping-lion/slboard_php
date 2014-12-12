@@ -1,3 +1,4 @@
+<?php require WEBROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'phpThumb' . DIRECTORY_SEPARATOR . 'phpThumb.config.php'; ?>
 <section id="sl_board_user_edit">
 	<form action="update.php" id="sl_board_user_edit_form" enctype="multipart/form-data" method="post">
 	<input type="hidden" id="message_no_email" value="<?php echo _('not_insert_email') ?>" />
@@ -31,6 +32,7 @@
   </div>
   	<div class="form-group">
     	<label for="sl_photo"><?php echo _('label_photo') ?></label>
+			<img width="100" height="100" class="img-responsive" src="<?php echo htmlspecialchars(phpThumbURL('src=/../uploads/users/'.$data['content']['id'].'/'.$data['content']['photo'].'&w=100&h=100', '/phpThumb/phpThumb.php')) ?>" alt="<?php echo $data['content']['description'] ?>" />  	
     	<input type="file" name="photo" id="sl_photo" />
   	</div>  
   <input type="submit" class="btn btn-primary" value="<?php echo _('submit') ?>" />      

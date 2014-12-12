@@ -1,11 +1,12 @@
 <header>	
   <ul id="top_menu">
 			<?php if(isset($_SESSION['USER_ID'])): ?>	
-			<li><a href="/users/edit.php"><?php echo _('user_edit') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>							
+			<li><a href="/users/edit.php"><?php echo $_SESSION['USER_NAME'] ?><?php echo _('welcome') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>							
 			<li><a href="/users/login/logout.php"><?php echo _('logout') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>
 			<?php else: ?>
-			<li><a href="/users/agree.php"><?php echo _('user') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>							
-			<li><a href="/users/login/index.php"><?php echo _('login') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+			<li><a href="/users/agree.php"><?php echo _('link_user_agree') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+			<!-- <li><a href="/users/new.php"><?php echo _('link_user_new') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li> -->				
+			<li><a href="/users/login/index.php"><?php echo _('link_login') ?><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span></a></li>
 			<?php endif ?>
   </ul>	
 	<nav class="container">
