@@ -1,3 +1,4 @@
+<?php require WEBROOT_DIRECTORY . DIRECTORY_SEPARATOR . 'phpThumb' . DIRECTORY_SEPARATOR . 'phpThumb.config.php' ?>
 <section id="sl_board_blog_show">
   <div class="slboard_content">
     <div class="sl_content_header">

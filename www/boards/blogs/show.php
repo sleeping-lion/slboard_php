@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	require 'setting.php';
 	
 	define('BLOG_COMMENT_DIRECTORY',BOARD_DIRECTORY . DIRECTORY_SEPARATOR . 'blog_comments');
 	define('BLOG_COMMENT_HTML_DIRECTORY',BOARD_HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'blog_comments');		

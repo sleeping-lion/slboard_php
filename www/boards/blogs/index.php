@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	require 'setting.php';
 
 	$clean = filter_input_array(INPUT_GET, array('gallery_caetegory_id' => FILTER_VALIDATE_INT, 'id' => FILTER_VALIDATE_INT));
 
@@ -11,7 +11,6 @@ try {
 	}
 	
 	$order_a = array('id' => 'id', 'title' => 'title', 'count'=>'count', 'created' => 'created_at', 'updated' => 'updated_at');	
-
 	$query_where = 'WHERE enable=1';
 
 	// 커넥터(PDO) 가져오기

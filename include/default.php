@@ -240,6 +240,17 @@ function find_style_script($file = null, $theme = 'default', $type = 'script') {
 	}
 }
 
+
+function delete_file($folder_name,$content) {
+	$file = UPLOAD_DIRECTORY . DIRECTORY_SEPARATOR . $folder_name	.DIRECTORY_SEPARATOR . $content['id'].DIRECTORY_SEPARATOR.$content['photo'];
+	
+	if (!file_exists($file))
+		return false;
+			//throw new Exception('디렉토리 생성 실패 디렉토리(' . UPLOAD_DIRECTORY . ')의 존재여부 또는 권한을 확인해주세요');
+	
+	unlink($file);
+}
+
 /*
  function make_thumbnail($source_path, $width, $height, $thumbnail_path){
  /*	$thumb = PhpThumbFactory::create($source_path);
@@ -371,6 +382,51 @@ function category_link($id, $category_name, $link = 'index.php') {
 }
 
 function show_link($id, $link = 'show.php') {
+	parse_str($_SERVER['QUERY_STRING'], $qs_a);
+
+	$count_qs_a = count($qs_a);
+	$query_string = 'id=' . $id;
+	if ($count_qs_a) {
+		foreach ($qs_a as $key => $value) {
+			if (strcmp($key, 'id'))
+				$query_string .= '&' . $key . '=' . $value;
+		}
+	}
+
+	return $link . '?' . $query_string;
+}
+
+function edit_link($id,$link='edit.php') {
+	parse_str($_SERVER['QUERY_STRING'], $qs_a);
+
+	$count_qs_a = count($qs_a);
+	$query_string = 'id=' . $id;
+	if ($count_qs_a) {
+		foreach ($qs_a as $key => $value) {
+			if (strcmp($key, 'id'))
+				$query_string .= '&' . $key . '=' . $value;
+		}
+	}
+
+	return $link . '?' . $query_string;
+}
+
+function delete_password_link($id,$link='check_delete_password.php') {
+	parse_str($_SERVER['QUERY_STRING'], $qs_a);
+
+	$count_qs_a = count($qs_a);
+	$query_string = 'id=' . $id;
+	if ($count_qs_a) {
+		foreach ($qs_a as $key => $value) {
+			if (strcmp($key, 'id'))
+				$query_string .= '&' . $key . '=' . $value;
+		}
+	}
+
+	return $link . '?' . $query_string;
+}
+
+function delete_confirm_link($id,$link='confirm_delete.php') {
 	parse_str($_SERVER['QUERY_STRING'], $qs_a);
 
 	$count_qs_a = count($qs_a);

@@ -10,13 +10,16 @@ try {
 	 */
 
 	if (empty($_SESSION['ACCOUNT_ID'])) {
-		$data['token']=md5(uniqid(rand(), true));
-		$_SESSION['LOGIN_TOKEN']=$data['token'];
+		$data['token'] = md5(uniqid(rand(), true));
+		$_SESSION['LOGIN_TOKEN'] = $data['token'];
 	}
 
 	if (empty($_SESSION['ADMIN'])) {
-		$config['template']['layout']='admin/login.php';
-		$config['template']['main']='login.php';
+		$config['template']['layout'] = 'admin/login.php';
+		$config['template']['main'] = 'login.php';
+	} else {
+		$config['template']['layout'] = 'admin/index.php';
+		$config['template']['header'] = 'admin/header.php';
 	}
 
 	$con = null;
@@ -27,5 +30,4 @@ try {
 
 	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
-
 ?>

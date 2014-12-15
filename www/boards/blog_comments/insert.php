@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	require 'setting.php';
 
 	// 입력 필터
 	$clean = filter_input_array(INPUT_POST, array('blog_id' => FILTER_VALIDATE_INT, 'name' => FILTER_SANITIZE_STRING, 'password' => FILTER_SANITIZE_STRING, 'password_confirm' => FILTER_SANITIZE_STRING, 'content' => FILTER_SANITIZE_STRING));
@@ -34,7 +34,7 @@ try {
 	$_SESSION['MESSAGE'] = _('successfully comment inserted');
 
 	$sl_redirect = '../blogs/show.php?id=' . $clean['blog_id'];
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
 	if ($con) {
 		if ($con -> inTransaction()) {
@@ -44,6 +44,6 @@ try {
 		$con = null;
 	}
 
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
 ?>

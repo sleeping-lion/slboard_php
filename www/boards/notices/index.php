@@ -11,17 +11,17 @@ try {
 		$clean['desc'] = true;
 	}
 
-	$order_a = array('id' => 'id', 'title' => 'title', 'count' => 'count', 'created' => 'created_at', 'updated' => 'updated_at');
+	$order_a = array('id' => 'id','name'=>'name','title' => 'title', 'count' => 'count', 'created' => 'created_at', 'updated' => 'updated_at');
 
 	// 커넥터(PDO) 가져오기
 	$con = get_PDO($config_db);
 
 	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
 
-	$query_where = 'WHERE enable=1';
+	$query_where = 'WHERE n.enable=1';
 
 	// 전체 카운터 뽑기
-	$stmt_count = $con -> prepare('SELECT COUNT(*) FROM notices ' . $query_where);
+	$stmt_count = $con -> prepare('SELECT COUNT(*) FROM notices AS n ' . $query_where);
 	$stmt_count -> execute();
 	$data['total'] = $stmt_count -> fetchColumn();
 
@@ -30,7 +30,7 @@ try {
 		$query_order = get_order_query($order_a, $clean['order'], $clean['desc']);
 		$query_limit = get_limit_query($clean['pageID']);
 
-		$stmt = $con -> prepare('SELECT * FROM notices ' . $query_where . ' ' . $query_order);
+		$stmt = $con -> prepare('SELECT n.*,u.name FROM notices AS n INNER JOIN users AS u ON n.user_id=u.id ' . $query_where . ' ' . $query_order);
 		$stmt -> execute();
 		$data['list'] = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 	}

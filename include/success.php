@@ -44,14 +44,14 @@ foreach ($config['template'] as $index => $value) {
 }
 
 if (empty($config['template']['layout']))
-	throw new Exception('레이아웃이 설정되지 않았습니다.$template[\'layout\']을 설정해 주세요');
+	throw new Exception('레이아웃이 설정되지 않았습니다.$config[\'template\'][\'layout\']을 설정해 주세요');
 
 // find_html함수가 돌려주는것으로  main템플릿 설정
 $config['template']['main'] = find_html($sl_theme,$config['template']['main']);
 
 // main템플릿이 없으면
 if (empty($config['template']['main']))
-	throw new Exception('main이  설정되지 않았습니다.$template[\'main\']을 설정해 주세요');
+	throw new Exception('main이  설정되지 않았습니다.$config[\'template\'][\'main\']을 설정해 주세요');
 
 
 if (file_exists(JAVASCRIPT_DIRECTORY . DIRECTORY_SEPARATOR . 'common.php')) {

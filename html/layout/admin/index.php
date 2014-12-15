@@ -13,8 +13,9 @@
 		<![endif]-->
 	</head>
 	<body id="sl_main_page">
+		<?php require $config['template']['header'] ?>		
 		<div id="mom">
-			<div id="main" class="container">
+			<div id="main" class="container">				
 				<?php require $config['template']['main'] ?>
 			</div>
 		</div>

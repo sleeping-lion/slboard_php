@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$("#slboard_account_agree_form").submit(function(){
+	$("#slboard_user_agree_form").submit(function(){
 		if(!$("#agree1").is(":checked")) {
 			alert('회원 이용약관에 동의해주세요');
 			return false;

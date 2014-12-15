@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	require 'setting.php';
 
 	// 입력 필터
 	$clean = filter_input_array(INPUT_POST, array('question_id' => FILTER_VALIDATE_INT, 'name' => FILTER_SANITIZE_STRING, 'password' => FILTER_SANITIZE_STRING, 'password_confirm' => FILTER_SANITIZE_STRING, 'content' => FILTER_SANITIZE_STRING));
@@ -27,6 +27,10 @@ try {
 	$stmt -> execute();
 
 	$data['inserted_id'] = $con -> lastInsertId();
+	
+	$stmt_update = $con -> prepare('UPDATE questions SET question_comments_count=question_comments_count+1 WHERE id=:id');
+	$stmt_update -> bindParam(':id', $clean['question_id'], PDO::PARAM_INT);
+	$stmt_update -> execute();	
 
 	/******** 커밋 **********/
 	$con -> commit();
@@ -35,7 +39,7 @@ try {
 	$_SESSION['MESSAGE'] = _('successfully comment inserted');
 
 	$sl_redirect = '../questions/show.php?id=' . $clean['question_id'];
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
 	if ($con) {
 		if ($con -> inTransaction()) {
@@ -45,6 +49,6 @@ try {
 		$con = null;
 	}
 
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
 ?>

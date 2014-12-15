@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require __DIR__.DIRECTORY_SEPARATOR.'setting.php';
+	require 'setting.php';
 
 	require $adminOnly;
 

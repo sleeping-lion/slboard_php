@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	require_once 'setting.php';
 
 	//	if($_SESSION['ADMIN']) {
 	//		$clean['id']=;

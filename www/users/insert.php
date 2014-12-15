@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require_once __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	require_once 'setting.php';
 
 	$clean = filter_input_array(INPUT_POST, array('email' => FILTER_VALIDATE_EMAIL, 'name' => FILTER_SANITIZE_STRING, 'password' => FILTER_SANITIZE_STRING, 'description' => FILTER_SANITIZE_STRING));
 

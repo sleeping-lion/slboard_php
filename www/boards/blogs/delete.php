@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	require 'setting.php';
 
 	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'admin_only.php';
 
@@ -9,6 +9,8 @@ try {
 
 	// 커넥터(PDO) 가져오기
 	$con = get_PDO($config_db);
+	
+	require 'check_exists_id.php';
 
 	/******** 트랙잭션 시작 **********/
 	$con -> beginTransaction();

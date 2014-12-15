@@ -32,7 +32,13 @@
   </div>
   	<div class="form-group">
     	<label for="sl_photo"><?php echo _('label_photo') ?></label>
-			<img width="100" height="100" class="img-responsive" src="<?php echo htmlspecialchars(phpThumbURL('src=/../uploads/users/'.$data['content']['id'].'/'.$data['content']['photo'].'&w=100&h=100', '/phpThumb/phpThumb.php')) ?>" alt="<?php echo $data['content']['description'] ?>" />  	
+    	<?php if($data['content']['photo']): ?>
+			<img width="100" height="100" class="img-responsive" src="<?php echo htmlspecialchars(phpThumbURL('src=/../uploads/users/'.$data['content']['id'].'/'.$data['content']['photo'].'&w=100&h=100', '/phpThumb/phpThumb.php')) ?>" alt="<?php echo $data['content']['description'] ?>" />
+		 <div class="checkbox">
+		 	<label>
+			<input type="checkbox" name="delete_photo" id="delete_photo" value="1" /> <?php echo _('label_delete_photo') ?>
+			</label>
+			<?php endif ?>
     	<input type="file" name="photo" id="sl_photo" />
   	</div>  
   <input type="submit" class="btn btn-primary" value="<?php echo _('submit') ?>" />      

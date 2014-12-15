@@ -1,10 +1,10 @@
 <?php
 
 try {
-	require_once __DIR__.DIRECTORY_SEPARATOR.'setting.php';
+	require 'setting.php';
 	
 	// 입력 필터	
-	$clean = filter_input_array(INPUT_POST, array('id'=>FILTER_VALIDATE_INT));		
+	$clean = filter_input_array(INPUT_POST, array('id'=>FILTER_VALIDATE_INT,'question_id' => FILTER_VALIDATE_INT));		
 
 	// 커넥터(PDO) 가져오기
 	$con = get_PDO($config_db);
@@ -12,13 +12,19 @@ try {
 	/******** 트랙잭션 시작 **********/
 	$con->beginTransaction();
 	
+	$stmt = $con -> prepare('DELETE FROM question_comments WHERE id=:id');
+	$stmt -> bindParam(':id', $clean['id'], PDO::PARAM_INT);
+	$stmt -> execute();
 	
+	$stmt_update = $con -> prepare('UPDATE questions SET question_comments_count=question_comments_count-1 WHERE id=:id');
+	$stmt_update -> bindParam(':id', $clean['question_id'], PDO::PARAM_INT);
+	$stmt_update -> execute();		
 
 	/******** 커밋 **********/
 	$con->commit();
 	$con=null;
 
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
 	if($con) {
 		if($con->inTransaction())	{
@@ -27,7 +33,7 @@ try {
 		}
 		$con=null;
 	}	
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
 
 ?>

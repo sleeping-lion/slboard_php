@@ -1,2 +1,2 @@
 <?php
-	$sl_script=array('users/new.js');
+	$sl_script=array('users/agree.js');

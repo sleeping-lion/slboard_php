@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	require 'setting.php';
 
 	$clean = filter_input_array(INPUT_POST, array('id' => FILTER_VALIDATE_INT));
 
