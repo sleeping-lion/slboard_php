@@ -11,15 +11,7 @@
 			<?php endif ?>
     </a>
     <div class="media-body">
-      <?php if(!empty($comment['user_id'])): ?>
-      <?php if($_SESSION['USER_ID']==$comment['user_id']): ?>
-      	<a class="close" href="../guest_book_comments/confirm_delete.php?guest_book_id=<?php echo $comment['guest_book_id'] ?>&id=<?php echo $comment['id'] ?>"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo _('delete') ?></span></a> 
-      <?php endif ?>
-      <?php else: ?>
-      <div>
-      	<a class="close" href="../guest_book_comments/check_delete_password.php?guest_book_id=<?php echo $comment['guest_book_id'] ?>&id=<?php echo $comment['id'] ?>"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo _('delete') ?></span></a>      	
-      </div>
-      <?php endif ?>
+      	<a class="close" href="<?php echo delete_link($comment); ?>"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo _('delete') ?></span></a> 
       <h4 class="media-heading"><?php echo $comment['name'] ?></h4>
       <div>
       	<?php echo nl2br($comment['content']) ?>

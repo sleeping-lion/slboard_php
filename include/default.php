@@ -396,48 +396,55 @@ function show_link($id, $link = 'show.php') {
 	return $link . '?' . $query_string;
 }
 
-function edit_link($id,$link='edit.php') {
+function edit_link(array $content,$link='edit.php',$password_link='check_password.php') {
 	parse_str($_SERVER['QUERY_STRING'], $qs_a);
 
 	$count_qs_a = count($qs_a);
-	$query_string = 'id=' . $id;
+	$query_string = 'id=' .  $content['id'];
 	if ($count_qs_a) {
 		foreach ($qs_a as $key => $value) {
 			if (strcmp($key, 'id'))
 				$query_string .= '&' . $key . '=' . $value;
 		}
 	}
-
+	
+	if(empty($_SESSION['ADMIN'])) {
+		if(empty($content['user_id'])) {
+			$link=$password_link;
+			$query_string .= '&action=edit';
+		} else {
+			if($content['user_id']!=$_SESSION['USER_ID']) {
+				$link=$password_link;
+				$query_string .= '&action=edit';
+			}
+		}	
+	}
 	return $link . '?' . $query_string;
 }
 
-function delete_password_link($id,$link='check_delete_password.php') {
+function delete_link(array $content,$link='confirm_delete.php',$password_link='check_password.php') {
 	parse_str($_SERVER['QUERY_STRING'], $qs_a);
 
 	$count_qs_a = count($qs_a);
-	$query_string = 'id=' . $id;
+	$query_string = 'id=' . $content['id'];
 	if ($count_qs_a) {
 		foreach ($qs_a as $key => $value) {
 			if (strcmp($key, 'id'))
 				$query_string .= '&' . $key . '=' . $value;
 		}
 	}
-
-	return $link . '?' . $query_string;
-}
-
-function delete_confirm_link($id,$link='confirm_delete.php') {
-	parse_str($_SERVER['QUERY_STRING'], $qs_a);
-
-	$count_qs_a = count($qs_a);
-	$query_string = 'id=' . $id;
-	if ($count_qs_a) {
-		foreach ($qs_a as $key => $value) {
-			if (strcmp($key, 'id'))
-				$query_string .= '&' . $key . '=' . $value;
-		}
+	
+	if(empty($_SESSION['ADMIN'])) {
+		if(empty($content['user_id'])) {
+			$link=$password_link;
+			$query_string .= '&action=delete';
+		} else {
+			if($content['user_id']!=$_SESSION['USER_ID']) {				
+				$link=$password_link;
+				$query_string .= '&action=delete';
+			}
+		}	
 	}
-
 	return $link . '?' . $query_string;
 }
 

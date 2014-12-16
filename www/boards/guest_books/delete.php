@@ -26,8 +26,8 @@ try {
 	$con -> commit();
 	$con = null;
 
-	$_SESSION['MESSAGE'] = _('successfully comment deleted');
-	$sl_redirect = '../guest_books/show.php?id=' . $clean['guest_book_id'];
+	$_SESSION['MESSAGE'] = _('successfully article deleted');
+	$sl_redirect = 'index.php';
 	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
 	if ($con) {

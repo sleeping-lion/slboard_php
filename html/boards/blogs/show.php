@@ -13,5 +13,7 @@
   <?php require BLOG_COMMENT_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'_new.php' ?>    
 	<div id="sl_content_bottom_buttons">
 		<a href="<?php echo index_link() ?>" class="btn btn-default"><?php echo _('index_link') ?></a>
+		<a href="<?php echo edit_link($data['content']['id']) ?>" class="btn btn-default btn btn-default col-xs-12 col-md-2"><?php echo _('edit_link') ?></a> 
+		<a href="<?php echo delete_confirm_link($data['content']['id']) ?>" class="btn btn-default btn btn-default col-xs-12 col-md-2"><?php echo _('delete_link') ?></a>							
 	</div>
 </section>

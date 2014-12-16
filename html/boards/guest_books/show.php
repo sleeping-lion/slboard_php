@@ -12,14 +12,12 @@
   <?php require GUEST_BOOK_COMMENT_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'_index.php' ?>
   <?php require GUEST_BOOK_COMMENT_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'_new.php' ?>
 	<div id="sl_content_bottom_buttons">
-		<a href="<?php echo index_link() ?>" class="btn btn-default"><?php echo _('index_link') ?></a>
-      <?php if(!empty($comment['user_id'])): ?>
-      <?php if($_SESSION['ADMIN'] OR $_SESSION['USER_ID']==$comment['user_id']): ?>
-      	<a href="<?php echo delete_confirm_link($data['content']['id']) ?>" class="btn btn-default btn btn-default col-xs-12 col-md-2"><?php echo _('edit_link') ?></a> 
-      <?php endif ?>
-      <?php else: ?>
-      	<a href="<?php echo delete_password_link($data['content']['id']) ?>" class="btn btn-default btn btn-default col-xs-12 col-md-2"><?php echo _('edit_link') ?></a>
-      <?php endif ?>
-		<a href="<?php echo delete_confirm_link($data['content']['id']) ?>" class="btn btn-default btn btn-default col-xs-12 col-md-2"><?php echo _('delete_link') ?></a>							
+		<div class="left">
+			<a href="<?php echo index_link() ?>" class="btn btn-default"><?php echo _('index_link') ?></a>
+		</div>
+		<div class="right col-xs-12 col-md-2">
+      	<a href="<?php echo delete_link($data['content']) ?>" class="btn btn-default"><?php echo _('delete_link') ?></a> 
+      	<a href="<?php echo edit_link($data['content']) ?>" class="btn btn-default"><?php echo _('edit_link') ?></a>
+   </div>				
 	</div>
 </section>

@@ -17,7 +17,8 @@ try {
 	/******** 트랙잭션 시작 **********/
 	$con -> beginTransaction();
 
-	$stmt = $con -> prepare('UPDATE guest_books SET title=:title,updated_at=now() WHERE id=:id');
+	$stmt = $con -> prepare('UPDATE guest_books SET name=:name,title=:title,updated_at=now() WHERE id=:id');
+	$stmt -> bindParam(':name', $clean['name'], PDO::PARAM_STR, 60);	
 	$stmt -> bindParam(':title', $clean['title'], PDO::PARAM_STR, 60);
 	$stmt -> bindParam(':id', $clean['id'], PDO::PARAM_INT);
 	$stmt -> execute();

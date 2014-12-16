@@ -9,12 +9,12 @@
 	<?php else: ?>		
   <div class="form-group">
     <label for="sl_name"><?php echo _('label_name') ?></label>
-    <input type="text" class="form-control" id="sl_name" name="name" maxlength="60" required="required" />
+    <input type="text" class="form-control" id="sl_name" name="name" value="<?php echo $data['content']['name'] ?>" maxlength="60" required="required" />
   </div>	
   <?php endif ?>
   <div class="form-group">
     <label for="sl_title"><?php echo _('label_title') ?></label>
-    <input type="text" class="form-control" id="sl_title" name="title" value="<?php echo $data['content']['title']?>" maxlength="60" required="required" />
+    <input type="text" class="form-control" id="sl_title" name="title" value="<?php echo $data['content']['title'] ?>" maxlength="60" required="required" />
   </div>
   <div class="form-group">
     <label for="sl_content"><?php echo _('label_content') ?></label>
