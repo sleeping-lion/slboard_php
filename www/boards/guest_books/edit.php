@@ -13,6 +13,8 @@ try {
 	$con = get_PDO($config_db);
 	
 	require '_check_exists_id.php';
+	require '_check_auth.php';
+	
 	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'common_select.php';
 	
 	$stmt = $con -> prepare('SELECT gb.*,gbc.content,IF(gb.user_id,u.name,gb.name) as name FROM guest_books As gb Inner Join guest_book_contents As gbc ON gb.id=gbc.id Left Join users As u On gb.user_id=u.id WHERE gb.id=:id');

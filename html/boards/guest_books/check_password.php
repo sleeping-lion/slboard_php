@@ -1,6 +1,6 @@
 <section id="slboard_guest_book_check_delete_password">
 	<form action="<?php echo $data['action'] ?>" method="post">
-		<?php if($data['action']=='delete'): ?>
+		<?php if($data['action']=='delete.php'): ?>
 		<input type="hidden" name="id" value="<?php echo $data['id'] ?>" />
 		<?php endif ?>
 		<div class="form-group">

@@ -1,6 +1,7 @@
 $(document).ready(function() {
   CKEDITOR.replace("sl_content", {
     fullPage: true,
-    allowedContent: true
+    allowedContent: true,
+		 filebrowserUploadUrl: '/ckeditor/upload.php'
   });
 });

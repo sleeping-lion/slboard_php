@@ -12,12 +12,12 @@
   <?php require GUEST_BOOK_COMMENT_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'_index.php' ?>
   <?php require GUEST_BOOK_COMMENT_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'_new.php' ?>
 	<div id="sl_content_bottom_buttons">
-		<div class="left">
+		<div class="pull-left">
 			<a href="<?php echo index_link() ?>" class="btn btn-default"><?php echo _('index_link') ?></a>
 		</div>
-		<div class="right col-xs-12 col-md-2">
-      	<a href="<?php echo delete_link($data['content']) ?>" class="btn btn-default"><?php echo _('delete_link') ?></a> 
-      	<a href="<?php echo edit_link($data['content']) ?>" class="btn btn-default"><?php echo _('edit_link') ?></a>
+		<div class="pull-right">
+      	<a href="<?php echo delete_link($data['content']) ?>" class="pull-right btn btn-default" style="margin-left:10px"><?php echo _('delete_link') ?></a>
+      	<a href="<?php echo edit_link($data['content']) ?>" class="pull-right btn btn-default"><?php echo _('edit_link') ?></a>
    </div>				
 	</div>
 </section>

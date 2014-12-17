@@ -23,5 +23,14 @@
 		<p>
 			
 		</p>
+	</article>
+	<article>
+		<h3>사용된 라이브러리</h3>
+		<ol>
+			<li><a href="boostrap">Boostrap</a></li>
+			<li><a href="PhpThumb">PhpThumb</a></li>
+			<li><a href="PhpThumb">Pagination</a></li>
+			<li><a href="PhpThumb">CKEditor</a></li>			
+		</ol>
 	</article>	
 </section>

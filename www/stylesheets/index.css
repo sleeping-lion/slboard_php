@@ -240,7 +240,7 @@ h3.no_m {margin:0}
 .sl_content_header {border-bottom:2px solid #ddd}
 .sl_content_info {float:right;padding:10px 0;color:#999}
 .sl_content_text {clear:both;padding:2em 1em}
-#sl_content_bottom_buttons {border-top:1px solid #ccc;margin:10px 0 0;padding:10px 0 0}
+#sl_content_bottom_buttons {border-top:1px solid #ccc;margin-top:10px;padding-top:10px}
 
 .box {float:left;width:100%;margin:20px 0px;}
 .box_header {float:left;width:100%;border: 1px solid #ddd;margin-bottom: -1px;padding: 10px;
