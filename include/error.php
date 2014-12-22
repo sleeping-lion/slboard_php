@@ -2,8 +2,8 @@
 
 if(isset($sl_redirect)) {
 	$_SESSION['BACK_DATA'] = $_REQUEST;
-	$_SESSION['ERROR_MESSAGE'] = $this -> data -> getMessage();
-	$_SESSION['ERROR_CODE'] = $this -> data -> getCode();
+	$_SESSION['ERROR_MESSAGE'] = $e -> getMessage();
+	$_SESSION['ERROR_CODE'] = $e -> getCode();
 	header('Location:' . $sl_redirect);
 	exit;	
 }

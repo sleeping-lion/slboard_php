@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require __DIR__ . DIRECTORY_SEPARATOR . 'setting.php';
+	require 'setting.php';
 
 	// 커넥터(PDO) 가져오기
 	$con = get_PDO($config_db);

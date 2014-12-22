@@ -2,6 +2,9 @@
 
 try {
 	require 'setting.php';
+	
+	$data['token'] = md5(uniqid(rand(), true));
+	$_SESSION['LOGIN_TOKEN'] = $data['token'];
 
 	$clean = filter_input_array(INPUT_POST, array('email' => FILTER_VALIDATE_EMAIL, 'password' => FILTER_SANITIZE_STRING, 'crypt' => FILTER_SANITIZE_STRING, 'return_url' => FILTER_SANITIZE_STRING));
 

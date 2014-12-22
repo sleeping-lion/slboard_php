@@ -38,8 +38,7 @@ try {
 
 	$con = null;
 
-	$sl_redirect = 'index.php';
-	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
+	success_redirect('index.php');
 } catch(Exception $e) {
 	if ($con) {
 		if ($con -> inTransaction()) {

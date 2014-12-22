@@ -1,10 +1,5 @@
 <?php
 
-if (isset($sl_redirect)) {
-	header('Location:' . $sl_redirect);
-	exit ;
-}
-
 if (empty($sl_theme)) {
 	if (isset($_GET['theme'])) {
 		$sl_theme = $_GET['theme'];
@@ -13,7 +8,7 @@ if (empty($sl_theme)) {
 	}
 }
 
-if (isset($_REQUEST['json'])) {	
+if (isset($_REQUEST['json'])) {
 	unset($data['site']);
 	unset($data['code']);	
 	unset($data['message']);

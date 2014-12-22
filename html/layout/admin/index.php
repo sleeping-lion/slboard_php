@@ -15,9 +15,11 @@
 	<body id="sl_main_page">
 		<?php require $config['template']['header'] ?>		
 		<div id="mom">
-			<div id="main" class="container">				
-				<?php require $config['template']['main'] ?>
+			<div id="main" class="fluid-container">
+				<?php require $config['template']['aside'] ?>				
+				<?php require $config['template']['main'] ?>		
 			</div>
 		</div>
+		<?php require $config['template']['footer'] ?>
 	</body>
 </html>

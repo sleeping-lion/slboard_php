@@ -2,6 +2,5 @@
 
 require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'setting.php';
 
-$config['table']='notices';
+$config['table'] = 'notices';
 $config['controller'] = 'notice';
-?>

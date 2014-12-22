@@ -13,6 +13,9 @@ try {
 
 	// 질문 답변 가져오기
 	require BOARD_DIRECTORY.DIRECTORY_SEPARATOR.'questions'.DIRECTORY_SEPARATOR.'_index.php';
+	
+	// 방명록 가져오기
+	require BOARD_DIRECTORY.DIRECTORY_SEPARATOR.'guest_books'.DIRECTORY_SEPARATOR.'_index.php';	
 
 	//  갤러리 가져오기 
 	require BOARD_DIRECTORY.DIRECTORY_SEPARATOR.'galleries'.DIRECTORY_SEPARATOR.'_index.php';	

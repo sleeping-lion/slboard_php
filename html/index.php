@@ -3,6 +3,7 @@
 	<section class="row">
 		<?php require_once BOARD_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'notices'.DIRECTORY_SEPARATOR.'_index.php' ?>
 		<?php require_once BOARD_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'questions'.DIRECTORY_SEPARATOR.'_index.php' ?>
+		<?php require_once BOARD_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'guest_books'.DIRECTORY_SEPARATOR.'_index.php' ?>		
 	</section>
 	<section class="row">
 		<?php require_once BOARD_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'galleries'.DIRECTORY_SEPARATOR.'_index.php' ?>
