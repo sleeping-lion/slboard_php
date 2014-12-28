@@ -12,6 +12,12 @@
   <?php require QUESTION_COMMENT_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'_index.php' ?>
   <?php require QUESTION_COMMENT_HTML_DIRECTORY.DIRECTORY_SEPARATOR.'_new.php' ?>
 	<div id="sl_content_bottom_buttons">
-		<a href="<?php echo index_link() ?>" class="btn btn-default"><?php echo _('index_link') ?></a>
+		<div class="pull-left">
+			<a href="<?php echo index_link() ?>" class="btn btn-default"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> <?php echo _('index_link') ?></a>
+		</div>
+		<div class="pull-right">
+      	<a href="<?php echo delete_link($data['content']) ?>" class="pull-right btn btn-default" style="margin-left:10px"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> <?php echo _('delete_link') ?></a>
+      	<a href="<?php echo edit_link($data['content']) ?>" class="pull-right btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <?php echo _('edit_link') ?></a>
+   </div>
 	</div>
 </section>

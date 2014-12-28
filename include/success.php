@@ -1,12 +1,12 @@
 <?php
 
-if (empty($sl_theme)) {
 	if (isset($_GET['theme'])) {
-		$sl_theme = $_GET['theme'];
-	} else {
-		$sl_theme = $config['theme'];
+		$config['theme'] = $_GET['theme'];
 	}
-}
+	
+	if(isset($_GET['no_layout'])) {
+		$config['template']['no_layout']=true;
+	}
 
 if (isset($_REQUEST['json'])) {
 	unset($data['site']);
@@ -14,16 +14,16 @@ if (isset($_REQUEST['json'])) {
 	unset($data['message']);
 	$data['result']='success';
 	//	header('Content-type: application/x-json');
-	//	echo find_json($sl_theme);
-	require find_json($sl_theme);
+	//	echo find_json($config['theme']);
+	require find_json($config['theme']);
 	exit ;
 }
 
 //echo HTML_DIRECTORY . DIRECTORY_SEPARATOR. $config['theme'].DIRECTORY_SEPARATOR. $value;
 foreach ($config['template'] as $index => $value) {
-	if(strcmp($sl_theme,'default')) {
-		if (file_exists(HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'theme' . DIRECTORY_SEPARATOR . $sl_theme . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value)) {
-			$config['template'][$index] = HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'theme' . DIRECTORY_SEPARATOR . $sl_theme . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value;
+	if(strcmp($config['theme'],'default')) {
+		if (file_exists(HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'theme' . DIRECTORY_SEPARATOR . $config['theme'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value)) {
+			$config['template'][$index] = HTML_DIRECTORY . DIRECTORY_SEPARATOR . 'theme' . DIRECTORY_SEPARATOR . $config['theme'] . DIRECTORY_SEPARATOR . 'layout' . DIRECTORY_SEPARATOR . $value;
 			continue;
 		}
 	} else {
@@ -42,7 +42,7 @@ if (empty($config['template']['layout']))
 	throw new Exception('레이아웃이 설정되지 않았습니다.$config[\'template\'][\'layout\']을 설정해 주세요');
 
 // find_html함수가 돌려주는것으로  main템플릿 설정
-$config['template']['main'] = find_html($sl_theme,$config['template']['main']);
+$config['template']['main'] = find_html($config['theme'],$config['template']['main']);
 
 // main템플릿이 없으면
 if (empty($config['template']['main']))
@@ -59,60 +59,59 @@ if (file_exists(STYLESHEET_DIRECTORY . DIRECTORY_SEPARATOR . 'common.php')) {
 	require STYLESHEET_DIRECTORY . DIRECTORY_SEPARATOR . 'common.php';
 }
 
-$sl_script_setting = find_style_script_setting($sl_theme);
+$sl_script_setting = find_style_script_setting($config['theme']);
 if ($sl_script_setting)
 	require $sl_script_setting;
 
-$sl_style_setting = find_style_script_setting($sl_theme, 'style');
+$sl_style_setting = find_style_script_setting($config['theme'], 'style');
 if ($sl_style_setting)
 	require $sl_style_setting;
 // theme setting 로드 끝
 
 //  template style이 따로 입력 되지 않았으면
-if (empty($config['template']['stylesheets'])) {
-	if (isset($sl_common_style)) {
-		if (is_array($sl_common_style)) {
-			foreach ($sl_common_style as $index => $value) {
-				$config['template']['stylesheets'][] = find_style_script($value, $sl_theme, 'style');
+
+
+	if (isset($config['template']['common_style'])) {
+		if (is_array($config['template']['common_style'])) {
+			foreach ($config['template']['common_style'] as $index => $value) {
+				$config['template']['stylesheets'][] = find_style_script($value, $config['theme'], 'style');
 			}
 		} else {
-			$config['template']['stylesheets'][] = find_style_script($sl_style, $sl_theme, 'style');
+			$config['template']['stylesheets'][] = find_style_script($sl_style, $config['theme'], 'style');
 		}
 	}
 
-	if (isset($sl_style)) {
-		if (is_array($sl_style)) {
-			foreach ($sl_style as $index => $value) {
-				$config['template']['stylesheets'][] = find_style_script($value, $sl_theme, 'style');
+	if (isset($config['template']['page_style'])) {
+		if (is_array($config['template']['page_style'])) {
+			foreach ($config['template']['page_style'] as $index => $value) {
+				$config['template']['stylesheets'][] = find_style_script($value, $config['theme'], 'style');
 			}
 		} else {
-			$config['template']['stylesheets'][] = find_style_script($sl_style, $sl_theme, 'style');
+			$config['template']['stylesheets'][] = find_style_script($sl_style, $config['theme'], 'style');
 		}
 	}
-}
+
 
 //  template script가  따로 입력 되지 않았으면
-if (empty($config['template']['javascripts'])) {
-	if (isset($sl_common_script)) {
-		if (is_array($sl_common_script)) {
-			foreach ($sl_common_script as $index => $value) {
-				$config['template']['javascripts'][] = find_style_script($value, $sl_theme, 'script');
+	if (isset($config['template']['common_script'])) {
+		if (is_array($config['template']['common_script'])) {
+			foreach ($config['template']['common_script'] as $index => $value) {
+				$config['template']['javascripts'][] = find_style_script($value, $config['theme'], 'script');
 			}
 		} else {
-			$config['template']['javascripts'][] = find_style_script($sl_js, $sl_theme, 'script');
+			$config['template']['javascripts'][] = find_style_script($sl_js, $config['theme'], 'script');
 		}
 	}
 
-	if (isset($sl_script)) {
-		if (is_array($sl_script)) {
-			foreach ($sl_script as $index => $value) {
-				$config['template']['javascripts'][] = find_style_script($value, $sl_theme, 'script');
+	if (isset($config['template']['page_script'])) {
+		if (is_array($config['template']['page_script'])) {
+			foreach ($config['template']['page_script'] as $index => $value) {
+				$config['template']['javascripts'][] = find_style_script($value, $config['theme'], 'script');
 			}
 		} else {
-			$config['template']['javascripts'][] = find_style_script($sl_js, $sl_theme, 'script');
+			$config['template']['javascripts'][] = find_style_script($sl_js, $config['theme'], 'script');
 		}
 	}
-}
 
 // 애러 메세지 세션이 있으면
 if (isset($_SESSION['ERROR_MESSAGE'])) {
@@ -151,7 +150,7 @@ if (isset($_SESSION['MESSAGE'])) {
 	// 데이터로 이동하고 세션 삭제
 }
 
-if (isset($_REQUEST['no_layout'])) {
+if (isset($config['template']['no_layout'])) {
 	require $config['template']['main'];
 } else {
 	require $config['template']['layout'];

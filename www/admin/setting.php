@@ -13,8 +13,11 @@ if (empty($_SESSION['ADMIN'])) {
 }
 
 if ($_SESSION['USER_ID']) {
-	$sl_common_style = array('bootstrap.min.css', 'admin/index.css');
+	$config['template']['common_style'] = array('bootstrap.min.css', 'admin/index.css');
 } else {
-	$sl_common_style = array('bootstrap.min.css', 'admin/login.css');
+	$config['template']['common_style'] = array('bootstrap.min.css', 'admin/login.css');
 }
-$sl_style = null;
+$config['template']['style'] = null;
+
+$config['template']['common_script'] = array('jquery-2.1.1.min.js', 'bootstrap.min.js');
+$config['template']['script'] = null;
