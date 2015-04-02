@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require_once 'setting.php';
+	require 'setting.php';
 
 	$clean = filter_input_array(INPUT_POST, array('email' => FILTER_VALIDATE_EMAIL, 'name' => FILTER_SANITIZE_STRING, 'password' => FILTER_SANITIZE_STRING, 'description' => FILTER_SANITIZE_STRING));
 
@@ -45,7 +45,7 @@ try {
 	$_SESSION['MESSAGE'] = '성공적으로 글 써졌음';
 
 	$sl_redirect = 'complete.php';
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
 	print_r($e);
 	exit;
@@ -57,6 +57,6 @@ try {
 	}
 	echo ';waeaeg';
 exit;
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
 ?>
