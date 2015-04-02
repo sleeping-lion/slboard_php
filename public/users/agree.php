@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require_once 'setting.php';
+	require 'setting.php';
 	
 	// 커넥터(PDO) 가져오기
 	$con = get_PDO($config_db);	
@@ -12,9 +12,9 @@ try {
 	
 	$config['action']='agree';
 
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require_once 'setting.php';
+	require 'setting.php';
 
 	//	if($_SESSION['ADMIN']) {
 	//		$clean['id']=;
@@ -29,10 +29,10 @@ try {
 
 	$con = null;
 
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
 	$con = null;
 
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
 ?>

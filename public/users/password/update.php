@@ -1,7 +1,7 @@
 <?php
 
 try {
-	require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'setting.php';
+	require dirname(__FILE__) . DIRECTORY_SEPARATOR . 'setting.php';
 
 	// 커넥터(PDO) 가져오기
 	$con = get_PDO($config_db);
@@ -13,7 +13,7 @@ try {
 	$con -> commit();
 	$con = null;
 
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'success.php';
 } catch(Exception $e) {
 	if ($con) {
 		if ($con -> inTransaction())
@@ -22,6 +22,6 @@ try {
 		$con = null;
 	}
 
-	require_once INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
+	require INCLUDE_DIRECTORY . DIRECTORY_SEPARATOR . 'error.php';
 }
 ?>
